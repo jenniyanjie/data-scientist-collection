@@ -43,5 +43,5 @@ else:
     with open('raw_'+str(datetime.now().date()) + '.pkl', 'rb') as ip:
         df = pickle.load(ip)
         
-# you can also save the data to csv, but its shitty slow if the data is huge
+# you can also save the data to csv, but it's shitty slow if the data is huge
 df.to_csv('../data/test.csv', sep = ',', index = False, encoding = 'utf-8')
