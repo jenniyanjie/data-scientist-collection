@@ -10,12 +10,17 @@ from datetime import datetime
 import pandas as pd
 #import cPickle as pickle #python2
 import _pickle as pickle #python3
+import argparse
 
-newdownload = False
+parser = argparse.ArgumentParser()
+parser.add_argument('--newdownload', action = 'store_true', 
+                    dest='newdownload', default = False, 
+                    help = 'download the new data')
+args = parser.parse_args()
 ##############################################################################
 # download data from redshift ################################################
 ##############################################################################
-if newdownload:
+if args.newdownload:
     print('Fetching data...')   
     # request the following info from dwh engineer
     redshift_endpoint = 'datawarehouse.some_chars_here.region_name.redshift.amazonaws.com.'
@@ -36,10 +41,12 @@ if newdownload:
     """, engine)
     print('Query time: %s' % str(datetime.now() - start))   
     # save the data
+    print('Saving query result...')
     with open('raw_'+str(datetime.now().date()) + '.pkl', 'wb') as op:
         pickle.dump(df, op, -1)
 else: 
     # you don't wanna download same data multiple times while you are debuging code
+    print('Loading query result...')
     with open('raw_'+str(datetime.now().date()) + '.pkl', 'rb') as ip:
         df = pickle.load(ip)
         
