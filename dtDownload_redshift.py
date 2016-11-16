@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
 connecting redshift using python to download data
+and save data as dataframe or csv
 @author: Jennifer
 """
 
