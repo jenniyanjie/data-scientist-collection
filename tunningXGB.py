@@ -134,12 +134,16 @@ if __name__ == "__main__":
 #                'gamma': [0.0, 0.1, 0.2, 0.3, 0.4]
                 ### best parameter for round 3: gamma = 0.2 ###
                 ### step 4 ###                
-#                 'subsample':[0.6, 0.7, 0.8, 0.9], # round 4
-#                 'colsample_bytree':[0.6, 0.7, 0.8, 0.9] # round 4  
-                ### best parameter for round 2: subsample = 0.9, colsample_bytree = 0.7 ###
+#                 'subsample':[0.6, 0.7, 0.8, 0.9], 
+#                 'colsample_bytree':[0.6, 0.7, 0.8, 0.9]
+                ### best parameter for round 4: subsample = 0.9, colsample_bytree = 0.7 ###
                 ### step 5 ### 
-                 'reg_alpha':[1e-5, 1e-2, 0.1, 1, 100], # round 5
+#                 'reg_alpha':[1e-5, 1e-2, 0.1, 1, 100], 
 #                 'reg_alpha':[0, 0.001, 0.005, 0.01, 0.05]
+                ### best parameter for round 5: reg_alpha = 1e-5 ###
+                ### step 6 ### 
+                 'reg_lambda':[0, 0.001, 0.005, 0.01, 0.05]
+                ### best parameter for round 6: reg_lambda = 0.005 ###
                  } 
         
     
