@@ -1,4 +1,6 @@
-# data-science
+# data-sciencentist-collection
+### kick-off-emr-cluster-from-ec2/:
+a script to create an emr cluster from ec2 to run spark job daily
 
 ### databaseConnection.R: 
 using JDBC connection to database and conduct query
