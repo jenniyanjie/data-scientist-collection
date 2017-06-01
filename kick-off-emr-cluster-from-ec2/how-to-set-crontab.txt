@@ -1,0 +1,12 @@
+1. install crontab
+2. run crontab -e to setup the cron job
+3. make sure the cron has the accessibility to run the script
+example: 
+$crontab -e
+TZ=SGT
+MAILTO=jyan@artofclick.com
+# m h  dom mon dow   command
+# dmp main pipeline
+00 20 * * * /home/ubuntu/project/data-scientist-collection/kick-off-emr-cluster-from-ec2/crontab-job.sh 
+
+
