@@ -6,8 +6,7 @@ sudo apt-get upgrade
 sudo apt-get install python-dev python-setuptools libatlas-dev g++
 #### Install requirements for Python script
 # sudo python2.7 -m pip install referer_parser
-### aerospike API
-sudo pip install -U aerospike
+
 ### dataframe, machine learning of python
 sudo pip install -U numpy
 sudo apt-get install libatlas-base-dev gfortran
@@ -28,6 +27,9 @@ sudo pip install sqlalchemy
 
 ### successful algo trading
 sudo pip install pandas_datareader
+
+### aerospike API
+sudo pip install -U aerospike
 
 ### recommender system
 git clone https://github.com/muricoca/crab.git
