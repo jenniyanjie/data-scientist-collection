@@ -64,22 +64,20 @@ class DeployPySparkScriptOnAws(object):
         [default]
         aws_access_key_id = <key_id>
         aws_secret_access_key = <access_key>
-
-
         '''
         self.homepath = homepath
-        self.app_name = "application_spark_deploy"          # Application name
-        self.ec2_key_name = "jennifer_emr_key"              # Key name to use for cluster
-        self.job_flow_id = None                             # Returned by AWS in start_spark_cluster()
-        self.job_name = None                                # Filled by generate_job_name()
-        self.path_script = os.path.join(homepath, "spark_script/")  # Path of Spark script to be deployed on AWS Cluster
-        self.s3_bucket_logs = "aws-logs-XXXXXXXXXXXX-ap-southeast-1"   # S3 Bucket to store AWS EMR logs
-        self.s3_bucket = "s3bucket-emr-spark"         # S3 Bucket to store temporary files
-        self.s3_region = 's3-ap-southeast-1.amazonaws.com'  # S3 region to specifiy s3Endpoint in s3-dist-cp step
-        self.user = 'jennifer'                              # Define user name, yes, I am jennifer!
-        self.files_to_keep = 5                              # to keep the uploaded files in S3 for n days, because this script
-                                                            # is running on everyday, then each day, lots of files would be save to s3.
-                                                            # I make a strategy of saving those files for 5 days.
+        self.app_name = "application_spark_deploy"                      # Application name
+        self.ec2_key_name = "jennifer_emr_key"                          # Key name to use for cluster
+        self.job_flow_id = None                                         # Returned by AWS in start_spark_cluster()
+        self.job_name = None                                            # Filled by generate_job_name()
+        self.path_script = os.path.join(homepath, "spark_script/")      # Path of Spark script to be deployed on AWS Cluster
+        self.s3_bucket_logs = "aws-logs-XXXXXXXXXXXX-ap-southeast-1"    # S3 Bucket to store AWS EMR logs
+        self.s3_bucket = "s3bucket-emr-spark"                           # S3 Bucket to store temporary files
+        self.s3_region = 's3-ap-southeast-1.amazonaws.com'              # S3 region to specifiy s3Endpoint in s3-dist-cp step
+        self.user = 'jennifer'                                          # Define user name, yes, I am jennifer!
+        self.files_to_keep = 5                                          # to keep the uploaded files in S3 for n days, because this script
+                                                                        # is running on everyday, then each day, lots of files would be save to s3.
+                                                                        # I make a strategy of saving those files for 5 days.
 
         #-------------to process the bid request of yyyy/mm/dd---------------------------------------------------#
         self.yyyy = yyyy
@@ -87,7 +85,7 @@ class DeployPySparkScriptOnAws(object):
         self.dd = dd
 
     def run(self):
-        session = boto3.Session(profile_name=self.user)    # Select AWS IAM profile
+        session = boto3.Session(profile_name=self.user)     # Select AWS IAM profile
         s3 = session.resource('s3')                         # Open S3 connection
         self.generate_job_name()                            # Generate job name
         self.temp_bucket_exists(s3)                         # Check if S3 bucket to store temporary files in exists
@@ -96,9 +94,9 @@ class DeployPySparkScriptOnAws(object):
         c = session.client('emr')                           # Open EMR connection
         self.start_spark_cluster(c)                         # Start Spark EMR cluster
 
-        self.step_spark_submit(c)                             # Add step 'spark-submit'
-        # self.describe_status_until_terminated(c)            # Describe cluster status until terminated
-        self.remove_old_folders(s3)                          # Remove files from the temporary files S3 bucket
+        self.step_spark_submit(c)                           # Add step 'spark-submit'
+        # self.describe_status_until_terminated(c)           # Describe cluster status until terminated
+        self.remove_old_folders(s3)                         # Remove files from the temporary files S3 bucket
 
     def generate_job_name(self):
         self.job_name = "{}.{}.{}".format(self.app_name,

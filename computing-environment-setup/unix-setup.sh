@@ -21,6 +21,11 @@ sudo pip install -U boto3
 sudo apt-get install libmysqlclient-dev
 sudo pip install mysqlclient
 
+### postgresql redshift
+sudo apt-get install libpq-dev
+sudo pip install psycopg2 
+sudo pip install sqlalchemy
+
 ### successful algo trading
 sudo pip install pandas_datareader
 
