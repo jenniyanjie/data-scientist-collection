@@ -39,12 +39,12 @@ sudo pip install nose
 
 #### Install xgboost
 #1. build the shared library
-sudo yum -y install git-core
+sudo apt-get -y install git-core
 git clone --recursive https://github.com/dmlc/xgboost $HOME/xgboost
 cd $HOME/xgboost; make -j4
 #2. build the python package for all user
 # cd /home/hadoop/xgboost/python-package; python setup.py develop --user
-sudo yum install python-setuptools
+sudo apt-get install python-setuptools
 cd $HOME/xgboost/python-package; sudo python setup.py install
 echo "PYTHONPATH=/home/ubuntu/xgboost/python-package" > $HOME/.bashrc
 source $HOME/.bashrc
